@@ -26,7 +26,9 @@
     },
     methods: {
       itemClick() {
-        this.$router.replace(this.path);
+        if(!this.isActive) {
+          this.$router.replace(this.path)
+        }
       },
     },
   };
