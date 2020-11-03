@@ -6,12 +6,26 @@
   </div>
 </template>
 <script>
-  import NavBar from "components/common/navbar/NavBar";
+  import NavBar from "components/common/navbar/NavBar"
+  import {getHomeMultidata} from "network/home"
 
   export default {
     name: "Home",
     components: {
       NavBar
+    },
+    data() {
+      return {
+        banners: [],
+        recommends: []
+      }
+    },
+    created() {
+      // 1.请求多个数据
+      getHomeMultidata().then(res => {
+        this.banners = res.data.banner.list
+        this.recommends = res.data.recommend.list
+      })
     }
   };
 </script>
